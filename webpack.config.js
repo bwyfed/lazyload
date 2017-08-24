@@ -35,6 +35,10 @@ module.exports = {
         options: {
           name: '[name].[ext]?[hash]'
         }
+      },
+      {
+          test: /\.(sass|scss)$/,
+          loader: 'style-loader!css-loader!sass-loader?sourceMap'
       }
     ]
   },

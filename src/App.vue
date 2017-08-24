@@ -20,6 +20,7 @@
 </template>
 
 <script>
+  import "./assets/site.scss"
 export default {
   name: 'app',
   data () {
