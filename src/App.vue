@@ -2,25 +2,16 @@
   <div id="app">
     <img src="./assets/logo.png">
     <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://gitter.im/vuejs/vue" target="_blank">Gitter Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <div class="img-list">
+      <img src="./assets/img/blank.gif" alt="Photo" data-echo="./assets/img/pic-1.jpg">
+      <img src="./assets/img/blank.gif" alt="Photo" data-echo="./assets/img/pic-2.jpg">
+      <img src="./assets/img/blank.gif" alt="Photo" data-echo="./assets/img/pic-3.jpg">
+    </div>
   </div>
 </template>
 
 <script>
-  import "./assets/site.scss"
+  import "./assets/scss/site.scss"
 export default {
   name: 'app',
   data () {
@@ -58,4 +49,11 @@ li {
 a {
   color: #42b983;
 }
+  .img-list {
+    img {
+      display: block;
+      width: 100%;
+      background: url(./assets/img/loading.gif) 50% no-repeat;
+    }
+  }
 </style>
