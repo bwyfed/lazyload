@@ -2,8 +2,13 @@
   <div id="app">
     <img src="./assets/img/logo.png">
     <h1>{{ msg }}</h1>
-    <img src="" class="logo" v-lazy="imgLogo">
-    <div class="bg-company" v-lazy:background-image="imgIcon"></div>
+    <!--<img src="" class="logo" v-lazy="imgLogo">-->
+    <!--<div class="bg-company" v-lazy:background-image="imgIcon"></div>-->
+    <ul>
+      <li v-for="item in imgUrl">
+        <img v-lazy="item.src" alt="" width="100%" height="auto"/>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -16,7 +21,21 @@ export default {
     return {
         msg: 'Welcome to Your Vue.js App',
         imgLogo: require('./assets/img/logo.png'),
-        imgIcon: require('./assets/img/pic-1.jpg')
+        imgIcon: require('./assets/img/pic-1.jpg'),
+        imgUrl: [
+            {src: require('./assets/img/pic-1.jpg')},
+            {src: require('./assets/img/pic-2.jpg')},
+            {src: require('./assets/img/pic-3.jpg')},
+            {src: require('./assets/img/pic-4.jpg')},
+            {src: require('./assets/img/pic-1.jpg')},
+            {src: require('./assets/img/pic-2.jpg')},
+            {src: require('./assets/img/pic-3.jpg')},
+            {src: require('./assets/img/pic-4.jpg')},
+            {src: require('./assets/img/pic-1.jpg')},
+            {src: require('./assets/img/pic-2.jpg')},
+            {src: require('./assets/img/pic-3.jpg')},
+            {src: require('./assets/img/pic-4.jpg')}
+        ]
     }
   },
     mounted() {
