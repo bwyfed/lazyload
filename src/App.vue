@@ -12,13 +12,26 @@
 
 <script>
   import "./assets/scss/site.scss"
+  import echo from "echo-js"
+//  const echo = require("echo-js");
 export default {
   name: 'app',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
-  }
+  },
+    mounted() {
+//      let globalecho = echo.bind()
+        echo.init({
+            offset: 100,
+            throttle: 250,
+            unload: false,
+            callback: function (element,op) {
+                console.log(element,' has been ', op + 'ed');
+            }
+        })
+    }
 }
 </script>
 
