@@ -1,36 +1,26 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <img src="./assets/img/logo.png">
     <h1>{{ msg }}</h1>
-    <div class="img-list">
-      <img src="./assets/img/blank.gif" alt="Photo" data-echo="./assets/img/pic-1.jpg">
-      <img src="./assets/img/blank.gif" alt="Photo" data-echo="./assets/img/pic-2.jpg">
-      <img src="./assets/img/blank.gif" alt="Photo" data-echo="./assets/img/pic-3.jpg">
-    </div>
+    <img src="" class="logo" v-lazy="imgLogo">
+    <div class="bg-company" v-lazy:background-image="imgIcon"></div>
   </div>
 </template>
 
 <script>
   import "./assets/scss/site.scss"
-  import echo from "echo-js"
-//  const echo = require("echo-js");
+//  import VueLazyLoad from "vue-lazyload"
 export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+        msg: 'Welcome to Your Vue.js App',
+        imgLogo: require('./assets/img/logo.png'),
+        imgIcon: require('./assets/img/pic-1.jpg')
     }
   },
     mounted() {
-//      let globalecho = echo.bind()
-        echo.init({
-            offset: 100,
-            throttle: 250,
-            unload: false,
-            callback: function (element,op) {
-                console.log(element,' has been ', op + 'ed');
-            }
-        })
+
     }
 }
 </script>
@@ -68,5 +58,22 @@ a {
       width: 100%;
       background: url(./assets/img/loading.gif) 50% no-repeat;
     }
+  }
+
+  img {
+    border: none;
+  }
+  img[src=""] {
+    opacity: 0;
+  }
+  .logo {
+    width: 50px;
+    height: 50px;
+  }
+  .bg-company {
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 </style>

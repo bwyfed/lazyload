@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "echo-js": "^1.7.3",
-    "vue": "^2.3.3"
+    "vue": "^2.3.3",
+    "vue-lazyload": "^1.0.6"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
