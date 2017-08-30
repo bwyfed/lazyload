@@ -14,6 +14,8 @@
 
 <script>
   import "./assets/scss/site.scss"
+  import Vue from 'vue'
+  import VueLazyLoad from 'vue-lazyload'
 //  import VueLazyLoad from "vue-lazyload"
 export default {
   name: 'app',
@@ -39,7 +41,24 @@ export default {
     }
   },
     mounted() {
-
+        Vue.use(VueLazyLoad, {
+            preLoad: 13,
+            error: require('./assets/img/logo.png'),
+            loading: require('./assets/img/loading.gif'),
+            attempt: 1,
+            listenEvents: ['scroll'],
+            adapter: {
+                loaded({ bindType, el, naturalHeight, naturalWidth, $parent, src, loading, error, Init }){
+                    console.log('loaded:'+src)
+                },
+                loading(listener, Init) {
+                    console.log('loading:',listener.src)
+                },
+                error(listener, Init) {
+                    console.log('error');
+                }
+            }
+        })
     }
 }
 </script>
