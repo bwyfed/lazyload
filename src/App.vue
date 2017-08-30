@@ -4,9 +4,14 @@
     <h1>{{ msg }}</h1>
     <!--<img src="" class="logo" v-lazy="imgLogo">-->
     <!--<div class="bg-company" v-lazy:background-image="imgIcon"></div>-->
+    <!--<ul>-->
+      <!--<li v-for="item in imgUrl">-->
+        <!--<img v-lazy="item.src" alt="" width="100%" height="auto"/>-->
+      <!--</li>-->
+    <!--</ul>-->
     <ul>
-      <li v-for="item in imgUrl">
-        <img v-lazy="item.src" alt="" width="100%" height="auto"/>
+      <li v-for="item in imgList">
+        <img v-view="'/src/assets/pic/'+item"/>
       </li>
     </ul>
   </div>
@@ -15,8 +20,19 @@
 <script>
   import "./assets/scss/site.scss"
   import Vue from 'vue'
-  import VueLazyLoad from 'vue-lazyload'
-//  import VueLazyLoad from "vue-lazyload"
+//  import VueLazyLoad from 'vue-lazyload'
+  import axios from 'axios'
+  import VueViewload from 'vue-viewload'
+  Vue.use(VueViewload, {
+      defaultPic: 'http://img.zcool.cn/community/0161f656b0663e6ac7256cb052d31a.gif',
+      errorPic: 'http://a0.att.hudong.com/77/31/20300542906611142174319458811.jpg',
+      threshold: 0,
+      effectFadeIn: true,
+      callback: function(ele, src) {
+          ele.style.border = '1px solid red';
+          console.log(ele.nodeName + '...' + src);
+      }
+  });
 export default {
   name: 'app',
   data () {
@@ -37,10 +53,21 @@ export default {
             {src: require('./assets/img/pic-2.jpg')},
             {src: require('./assets/img/pic-3.jpg')},
             {src: require('./assets/img/pic-4.jpg')}
-        ]
+        ],
+        imgList: []
     }
   },
+    created() {
+      axios({
+          method: 'get',
+          url: '../mock/imgs.json'
+      }).then((response) => {
+          console.log(response.data);
+          this.imgList = [...this.imgList,...response.data];
+      })
+    },
     mounted() {
+        /*
         Vue.use(VueLazyLoad, {
             preLoad: 13,
             error: require('./assets/img/logo.png'),
@@ -59,6 +86,7 @@ export default {
                 }
             }
         })
+        */
     }
 }
 </script>
